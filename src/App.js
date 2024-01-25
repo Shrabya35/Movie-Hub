@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-
-
+import { FaUser } from "react-icons/fa";
+import { BiSolidCameraMovie } from "react-icons/bi";
 
 import MovieCard from "./MovieCard";
 import SearchIcon from "./search.svg";
@@ -13,7 +13,7 @@ const App = () => {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
-    searchMovies("Spider");
+    searchMovies("movie");
   }, []);
 
   const searchMovies = async (title) => {
@@ -22,39 +22,54 @@ const App = () => {
 
     setMovies(data.Search);
   };
+  const handleReloadClick = () => {
+    window.location.reload();
+  };
 
-  
-
-
+  const [imageClicked, setImageClicked] = useState(false);
+  const handleClick = () => {
+    setImageClicked(!imageClicked);
+  };
+  if (imageClicked) {
+    console.log("Image was clicked.");
+  }
 
   return (
     <div className="app">
-      
-      <h1>Movie-Searcher</h1>
+      <div className="Navbar">
+        <h1 onClick={handleReloadClick}>
+          <BiSolidCameraMovie /> Movie Hub
+        </h1>
 
-      <div className="search">
-        <input
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          onKeyDown={(e) => e.key === 'Enter' && searchMovies(searchTerm)}
-          placeholder="Enter Keywords..."
-        />
-        <img
-          src={SearchIcon}
-          alt="search"
-          onClick={() => searchMovies(searchTerm)}
-        />
+        <div className="search">
+          <img
+            src={SearchIcon}
+            alt="search"
+            onClick={() => searchMovies(searchTerm)}
+          />
+          <input
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            onKeyDown={(e) => e.key === "Enter" && searchMovies(searchTerm)}
+            placeholder="Enter Keywords..."
+          />
+        </div>
+        <div className="login">
+          <p>
+            <FaUser />
+          </p>
+        </div>
       </div>
 
       {movies?.length > 0 ? (
-        <div className="container">
+        <div className="container" onClick={handleClick}>
           {movies.map((movie) => (
             <MovieCard movie={movie} />
           ))}
         </div>
       ) : (
         <div className="empty">
-          <h2>No movies found</h2>
+          <h2>No Result.</h2>
         </div>
       )}
     </div>
