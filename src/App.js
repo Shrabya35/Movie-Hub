@@ -4,7 +4,7 @@ import { BiSolidCameraMovie } from "react-icons/bi";
 
 import MovieCard from "./MovieCard";
 import SearchIcon from "./search.svg";
-import "./App.css";
+import "./App.scss";
 
 const API_URL = "http://www.omdbapi.com?apikey=b6003d8a";
 

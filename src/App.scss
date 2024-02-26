@@ -1,0 +1,210 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto+Slab:100,300,400,700");
+@import url("https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i");
+$primary-color: #3f5c3d;
+$secondary-color: #84bd84;
+$accent-color: #006E9E;
+$shadow-color: #212426;
+$font-roboto: "Roboto Slab",
+serif;
+$font-raleway: "Raleway",
+sans-serif;
+* {
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    zoom: 0.7;
+    transform-origin: top left;
+}
+
+:root {
+    --font-roboto: #{$font-roboto};
+    --font-raleway: #{$font-raleway};
+}
+
+body {
+    font-family: var(--font-roboto);
+    background-color: white;
+}
+
+.app {
+    display: flex;
+    flex-direction: column;
+    .Navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding: 1rem;
+        background-color: $primary-color;
+        box-shadow: 3px .5px 3px black, -5px -5px 7px $primary-color;
+        z-index: 4;
+        h1 {
+            padding-top: 1rem;
+            font-size: 2rem;
+            letter-spacing: 0.5px;
+            background: $secondary-color;
+            text-shadow: .3px .5px .3px $secondary-color, -5px -5px 7px $shadow-color;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            width: fit-content;
+            cursor: pointer;
+        }
+        .search {
+            width: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.75rem 1.75rem;
+            border-radius: 3rem;
+            background: white;
+            -webkit-box-shadow: 5px 5px 7px $accent-color, -5px -5px 7px #00A1D5;
+            box-shadow: 5px 5px 7px #00a0d541, -5px -5px 7px #3e6075;
+            img {
+                width: 35px;
+                height: 35px;
+                cursor: pointer;
+            }
+            input {
+                width: 90%;
+                flex: 1;
+                border: none;
+                font-size: 1.5rem;
+                font-family: var(--font-raleway);
+                font-weight: 500;
+                padding-right: 1rem;
+                outline: none;
+                color: grey;
+                background: white;
+                text-align: center;
+                &::placeholder {
+                    text-align: center;
+                }
+            }
+        }
+        .login {
+            p {
+                padding-top: 1rem;
+                font-size: 2rem;
+                letter-spacing: 0.5px;
+                color: white;
+                text-shadow: .3px .5px .3px white, -5px -5px 7px $shadow-color;
+                cursor: pointer;
+            }
+        }
+        @media screen and (max-width: 600px) {
+            padding: 4rem 2rem;
+            .search {
+                img {
+                    width: 20px;
+                    height: 20px;
+                }
+            }
+        }
+        @media screen and (max-width: 400px) {
+            padding: 4rem 1rem;
+            h1 {
+                font-size: 1rem;
+            }
+            .search {
+                padding: .5rem;
+                width: 60%;
+                input {
+                    padding: .1rem;
+                    width: 90%;
+                    font-size: 1rem;
+                }
+            }
+        }
+    }
+    .empty {
+        width: 100%;
+        margin-top: 13rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        h2 {
+            font-size: 1.25rem;
+            color: $primary-color;
+            font-family: var(--font-raleway);
+        }
+    }
+    .container {
+        width: 100%;
+        margin-top: 10rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        .movie {
+            width: 310px;
+            height: 460px;
+            margin: 1.5rem;
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            border: none;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0, 1);
+            box-shadow: 0px 13px 10px -7px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            div:nth-of-type(1) {
+                position: absolute;
+                padding: 16px;
+                width: 100%;
+                opacity: 0;
+                top: 0;
+                color: black;
+            }
+            &:hover {
+                box-shadow: 0px 30px 18px -8px rgba(0, 0, 0, 0.1);
+                transform: scale(1.05, 1.05);
+                div:nth-of-type(2) {
+                    height: 100%;
+                    opacity: 0.3;
+                }
+                div:nth-of-type(3) {
+                    background-color: transparent;
+                }
+                div:nth-of-type(1) {
+                    opacity: 1;
+                }
+            }
+            div:nth-of-type(2) {
+                width: 100%;
+                height: 100%;
+                img {
+                    height: 100%;
+                    width: 100%;
+                }
+            }
+            div:nth-of-type(3) {
+                z-index: 2;
+                background-color: $primary-color;
+                padding: 16px 24px 24px 24px;
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                left: 0;
+                span {
+                    font-family: "Raleway", sans-serif;
+                    text-transform: uppercase;
+                    font-size: 13px;
+                    letter-spacing: 2px;
+                    font-weight: 500;
+                    color: #f0f0f0;
+                }
+                h3 {
+                    margin-top: 5px;
+                    font-family: "Roboto Slab", serif;
+                    color: rgba(0, 0, 0, 0.924);
+                }
+            }
+        }
+    }
+}
